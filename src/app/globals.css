@@ -1,26 +1,461 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* ===== BASE THEME TOKENS ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors - Light Theme */
+  --color-primary: 0 0 0;
+  --color-primary-foreground: 255 255 255;
+  --color-secondary: 245 245 245;
+  --color-secondary-foreground: 0 0 0;
+  --color-muted: 250 250 250;
+  --color-muted-foreground: 82 82 82;
+  --color-accent: 245 245 245;
+  --color-accent-foreground: 0 0 0;
+  --color-border: 229 229 229;
+  --color-input: 250 250 250;
+  --color-ring: 0 0 0;
+  --color-background: 255 255 255;
+  --color-foreground: 0 0 0;
+  --color-card: 255 255 255;
+  --color-card-foreground: 0 0 0;
+  --color-popover: 255 255 255;
+  --color-popover-foreground: 0 0 0;
+  --color-destructive: 220 38 38;
+  --color-destructive-foreground: 255 255 255;
+  --color-success: 22 163 74;
+  --color-success-foreground: 255 255 255;
+  --color-warning: 217 119 6;
+  --color-warning-foreground: 255 255 255;
+
+  /* Typography */
+  --font-family-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-family-mono: var(--font-geist-mono), 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.025em;
+
+  /* Spacing */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+
+  /* Border Radius */
+  --radius-none: 0;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 300ms ease;
+
+  /* Z-Index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ===== DARK THEME TOKENS ===== */
+.dark {
+  --color-primary: 255 255 255;
+  --color-primary-foreground: 0 0 0;
+  --color-secondary: 38 38 38;
+  --color-secondary-foreground: 255 255 255;
+  --color-muted: 38 38 38;
+  --color-muted-foreground: 212 212 212;
+  --color-accent: 38 38 38;
+  --color-accent-foreground: 255 255 255;
+  --color-border: 64 64 64;
+  --color-input: 38 38 38;
+  --color-ring: 255 255 255;
+  --color-background: 0 0 0;
+  --color-foreground: 255 255 255;
+  --color-card: 10 10 10;
+  --color-card-foreground: 255 255 255;
+  --color-popover: 10 10 10;
+  --color-popover-foreground: 255 255 255;
+  --color-destructive: 239 68 68;
+  --color-destructive-foreground: 255 255 255;
+  --color-success: 34 197 94;
+  --color-success-foreground: 255 255 255;
+  --color-warning: 245 158 11;
+  --color-warning-foreground: 255 255 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ===== BASE STYLES ===== */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography Utilities */
+  .font-sans {
+    font-family: var(--font-family-sans) !important;
+  }
+  
+  .font-mono {
+    font-family: var(--font-family-mono) !important;
+  }
+
+  /* Focus Styles */
+  .focus-visible {
+    outline: 2px solid rgb(var(--color-ring));
+    outline-offset: 2px;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgb(var(--color-primary) / 0.1);
+    color: rgb(var(--color-foreground));
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ===== COMPONENT UTILITIES ===== */
+@layer components {
+  /* Button Base */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md font-mono font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+
+  .btn-outline {
+    @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .btn-destructive {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive/90;
+  }
+
+  .btn-sm {
+    @apply h-8 px-3 text-xs;
+  }
+
+  .btn-md {
+    @apply h-10 px-4 py-2 text-sm;
+  }
+
+  .btn-lg {
+    @apply h-12 px-8 text-base;
+  }
+
+  /* Card Base */
+  .card {
+    @apply rounded-lg border bg-card text-card-foreground shadow-sm;
+  }
+
+  .card-header {
+    @apply flex flex-col space-y-1.5 p-6;
+  }
+
+  .card-title {
+    @apply text-2xl font-semibold leading-none tracking-tight;
+  }
+
+  .card-description {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .card-content {
+    @apply p-6 pt-0;
+  }
+
+  .card-footer {
+    @apply flex items-center p-6 pt-0;
+  }
+
+  /* Input Base */
+  .input {
+    @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  /* Badge Base */
+  .badge {
+    @apply inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  .badge-default {
+    @apply border-transparent bg-primary text-primary-foreground hover:bg-primary/80;
+  }
+
+  .badge-secondary {
+    @apply border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+
+  .badge-destructive {
+    @apply border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80;
+  }
+
+  .badge-outline {
+    @apply text-foreground;
+  }
+}
+
+/* ===== TYPOGRAPHY UTILITIES ===== */
+@layer utilities {
+  /* Font Sizes */
+  .text-xs { font-size: var(--font-size-xs); }
+  .text-sm { font-size: var(--font-size-sm); }
+  .text-base { font-size: var(--font-size-base); }
+  .text-lg { font-size: var(--font-size-lg); }
+  .text-xl { font-size: var(--font-size-xl); }
+  .text-2xl { font-size: var(--font-size-2xl); }
+  .text-3xl { font-size: var(--font-size-3xl); }
+  .text-4xl { font-size: var(--font-size-4xl); }
+  .text-5xl { font-size: var(--font-size-5xl); }
+  .text-6xl { font-size: var(--font-size-6xl); }
+
+  /* Font Weights */
+  .font-normal { font-weight: var(--font-weight-normal); }
+  .font-medium { font-weight: var(--font-weight-medium); }
+  .font-semibold { font-weight: var(--font-weight-semibold); }
+  .font-bold { font-weight: var(--font-weight-bold); }
+
+  /* Line Heights */
+  .leading-tight { line-height: var(--line-height-tight); }
+  .leading-normal { line-height: var(--line-height-normal); }
+  .leading-relaxed { line-height: var(--line-height-relaxed); }
+
+  /* Letter Spacing */
+  .tracking-tight { letter-spacing: var(--letter-spacing-tight); }
+  .tracking-normal { letter-spacing: var(--letter-spacing-normal); }
+  .tracking-wide { letter-spacing: var(--letter-spacing-wide); }
+
+  /* Typography Combinations */
+  .typography-display {
+    @apply font-mono font-bold leading-tight tracking-tight;
+  }
+
+  .typography-heading {
+    @apply font-mono font-semibold leading-tight tracking-tight;
+  }
+
+  .typography-body {
+    @apply font-mono font-normal leading-normal;
+  }
+
+  .typography-caption {
+    @apply font-mono font-normal leading-normal text-muted-foreground;
+  }
+
+  .typography-code {
+    @apply font-mono font-medium bg-muted px-1.5 py-0.5 rounded;
+  }
+
+  .typography-code-block {
+    @apply font-mono font-medium bg-muted p-3 rounded-md block;
+  }
+
+  /* Text Variants */
+  .text-primary { color: rgb(var(--color-primary)); }
+  .text-primary-foreground { color: rgb(var(--color-primary-foreground)); }
+  .text-secondary { color: rgb(var(--color-secondary)); }
+  .text-secondary-foreground { color: rgb(var(--color-secondary-foreground)); }
+  .text-muted { color: rgb(var(--color-muted)); }
+  .text-muted-foreground { color: rgb(var(--color-muted-foreground)); }
+  .text-accent { color: rgb(var(--color-accent)); }
+  .text-accent-foreground { color: rgb(var(--color-accent-foreground)); }
+  .text-destructive { color: rgb(var(--color-destructive)); }
+  .text-destructive-foreground { color: rgb(var(--color-destructive-foreground)); }
+  .text-success { color: rgb(var(--color-success)); }
+  .text-success-foreground { color: rgb(var(--color-success-foreground)); }
+  .text-warning { color: rgb(var(--color-warning)); }
+  .text-warning-foreground { color: rgb(var(--color-warning-foreground)); }
+
+  /* Responsive Typography */
+  .responsive-text {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+
+  .responsive-heading {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
+  }
+
+  /* Typography Spacing */
+  .text-spacing-tight { letter-spacing: -0.025em; }
+  .text-spacing-normal { letter-spacing: 0em; }
+  .text-spacing-wide { letter-spacing: 0.025em; }
+  .text-spacing-wider { letter-spacing: 0.05em; }
+  .text-spacing-widest { letter-spacing: 0.1em; }
+}
+
+/* ===== QR SCANNER STYLES ===== */
+@layer components {
+  /* Override html5-qrcode default styles to match our theme */
+  #qr-reader {
+    border: none !important;
+    border-radius: var(--radius-lg) !important;
+    overflow: hidden !important;
+  }
+
+  #qr-reader__scan_region {
+    background: transparent !important;
+  }
+
+  #qr-reader__scan_region > img {
+    display: none !important;
+  }
+
+  #qr-reader__camera_selection {
+    background: rgb(var(--color-background)) !important;
+    color: rgb(var(--color-foreground)) !important;
+    border: 1px solid rgb(var(--color-border)) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 0.5rem !important;
+    font-family: var(--font-family-mono) !important;
+    font-size: var(--font-size-sm) !important;
+  }
+
+  #qr-reader__camera_selection:focus {
+    outline: 2px solid rgb(var(--color-ring)) !important;
+    outline-offset: 2px !important;
+  }
+
+  #qr-reader__dashboard {
+    background: rgb(var(--color-background)) !important;
+    border: 1px solid rgb(var(--color-border)) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 1rem !important;
+    margin-top: 1rem !important;
+  }
+
+  #qr-reader__dashboard_section {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #qr-reader__dashboard_section_csr {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #qr-reader__dashboard_section_swaplink {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #qr-reader__dashboard_section_swaplink > a {
+    background: rgb(var(--color-primary)) !important;
+    color: rgb(var(--color-primary-foreground)) !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    padding: 0.5rem 1rem !important;
+    font-family: var(--font-family-mono) !important;
+    font-size: var(--font-size-sm) !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    transition: background-color var(--transition-normal) !important;
+  }
+
+  #qr-reader__dashboard_section_swaplink > a:hover {
+    background: rgb(var(--color-primary) / 0.9) !important;
+  }
+
+  #qr-reader__status_span {
+    background: transparent !important;
+    color: rgb(var(--color-foreground)) !important;
+    font-family: var(--font-family-mono) !important;
+    font-size: var(--font-size-sm) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #qr-reader__status_span > span {
+    background: transparent !important;
+    color: rgb(var(--color-foreground)) !important;
+    font-family: var(--font-family-mono) !important;
+    font-size: var(--font-size-sm) !important;
+  }
+
+  #qr-reader__scan_region_highlight {
+    border: 2px solid rgb(var(--color-primary)) !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  #qr-reader__scan_region_highlight_animate {
+    border: 2px solid rgb(var(--color-primary)) !important;
+    border-radius: var(--radius-md) !important;
+    animation: qr-scan-animation 2s ease-in-out infinite !important;
+  }
+
+  @keyframes qr-scan-animation {
+    0%, 100% {
+      border-color: rgb(var(--color-primary));
+      opacity: 1;
+    }
+    50% {
+      border-color: rgb(var(--color-primary) / 0.5);
+      opacity: 0.7;
+    }
+  }
 }
