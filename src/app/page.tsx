@@ -1,8 +1,8 @@
 'use client'
 
 import { useThemeStore } from '@/stores/theme'
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Badge, Input } from '@/components/ui'
-import { Heading, Text, Code, Label, List, Quote, typographyVariants } from '@/components/ui'
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, Badge, Input } from '@/components/ui'
+import { Heading, Text, Code, Label, List, Quote } from '@/components/ui'
 import { Moon, Sun, Palette, Code as CodeIcon, Zap, Type, Hash, Quote as QuoteIcon, Store } from 'lucide-react'
 import Link from 'next/link'
 
@@ -21,14 +21,14 @@ export default function HomePage() {
             <Text size="lg" variant="muted" className="typography-body sm:text-xl">
               A comprehensive typography system with monospace consistency
             </Text>
-            <div className="flex justify-center gap-4">
-              <Link href="/merchant">
-                <Button className="flex items-center gap-2 text-base">
-                  <Store className="w-4 h-4" />
-                  Merchant Portal
-                </Button>
-              </Link>
-            </div>
+                         <div className="flex justify-center gap-4">
+               <Link href="/auth">
+                 <Button className="flex items-center gap-2 text-base">
+                   <Store className="w-4 h-4" />
+                   Merchant Portal
+                 </Button>
+               </Link>
+             </div>
           </div>
 
           {/* Theme Controls */}
@@ -148,14 +148,14 @@ export default function HomePage() {
               </CardHeader>
               <CardContent className="p-6 pt-0 space-y-4">
                 <div className="space-y-3">
-                  <Text className="text-base">Inline code: <Code>const theme = 'dark'</Code></Text>
+                  <Text className="text-base">Inline code: <Code>const theme = &apos;dark&apos;</Code></Text>
                   <Text className="text-base">With variant: <Code variant="success">success</Code></Text>
                   <Text className="text-base">With variant: <Code variant="warning">warning</Code></Text>
                   <Text className="text-base">With variant: <Code variant="destructive">error</Code></Text>
                 </div>
                 <Code block variant="default" size="xs" className="text-xs sm:text-sm">
 {`function useTheme() {
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState(&apos;light&apos;)
   return { theme, setTheme }
 }`}
                 </Code>

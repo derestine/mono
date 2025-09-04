@@ -3,16 +3,18 @@
 import React, { useState } from 'react'
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from './index'
 import { Heading, Text } from './index'
-import { X, DollarSign, User, CheckCircle } from 'lucide-react'
+import { X, DollarSign, CheckCircle } from 'lucide-react'
 
 interface SpendModalProps {
   isOpen: boolean
   onClose: () => void
   customerId: string
+  customerName?: string
   onSubmit: (customerId: string, amount: number) => void
+  isProcessing?: boolean
 }
 
-export function SpendModal({ isOpen, onClose, customerId, onSubmit }: SpendModalProps) {
+export function SpendModal({ isOpen, onClose, customerId, customerName, onSubmit, isProcessing = false }: SpendModalProps) {
   const [amount, setAmount] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -87,7 +89,7 @@ export function SpendModal({ isOpen, onClose, customerId, onSubmit }: SpendModal
                 Enter Spend Amount
               </CardTitle>
               <CardDescription className="text-base">
-                Customer ID: {customerId}
+                {customerName ? customerName : `Customer ID: ${customerId}`}
               </CardDescription>
             </div>
             <Button
@@ -173,10 +175,10 @@ export function SpendModal({ isOpen, onClose, customerId, onSubmit }: SpendModal
                   </Button>
                   <Button
                     onClick={handleSubmit}
-                    disabled={!amount || parseFloat(amount) <= 0 || isSubmitting}
+                    disabled={!amount || parseFloat(amount) <= 0 || isSubmitting || isProcessing}
                     className="flex-1"
                   >
-                    {isSubmitting ? 'Processing...' : 'Submit'}
+                    {isSubmitting || isProcessing ? 'Processing...' : 'Submit'}
                   </Button>
                 </div>
               </>

@@ -151,7 +151,8 @@ const Code = forwardRef<HTMLElement, CodeProps>(
 
     return (
       <Component
-        ref={ref}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
         className={cn(
           'font-mono font-medium',
           sizeClasses[size],
@@ -228,7 +229,7 @@ export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {
   spacing?: 'tight' | 'normal' | 'loose'
 }
 
-const List = forwardRef<HTMLUListElement, ListProps>(
+const List = forwardRef<HTMLElement, ListProps>(
   ({ className, as: Component = 'ul', size = 'base', variant = 'default', spacing = 'normal', children, ...props }, ref) => {
     const sizeClasses = {
       xs: 'text-xs',
@@ -250,7 +251,8 @@ const List = forwardRef<HTMLUListElement, ListProps>(
 
     return (
       <Component
-        ref={ref}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
         className={cn(
           'font-mono',
           sizeClasses[size],
